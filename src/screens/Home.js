@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import React from 'react';
 import generalStyles from '../styles/general/generalStyles';
-import homeStyles from '../styles/home/homeStyles';
 import TopButtonsComponent from '../components/HomeComponents/TopButtonsComponent';
 import TopHelloText from '../components/HomeComponents/TopHelloText';
 import ActionsButtonComponent from '../components/HomeComponents/ActionsButtonComponent';
