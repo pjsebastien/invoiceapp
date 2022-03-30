@@ -3,6 +3,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import HomeScreen from '../screens/Home';
 import TestScreen from '../screens/Test';
+import AccountScreen from '../screens/Account';
+import UserInfoFormScreen from '../screens/UserInfoForm';
 import ResetPasswordScreen from '../screens/ResetPassword';
 import AuthenticatorScreen from '../screens/Authenticator';
 import StartupScreen from '../screens/Startup';
@@ -22,6 +24,11 @@ export const AppStackNavigator = () => {
             <StackNavigator.Screen
                 name="test"
                 component={TestScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="userInfoForm"
+                component={UserInfoFormScreen}
                 options={{ headerShown: false }}
             />
         </StackNavigator.Navigator>
@@ -47,6 +54,14 @@ const AppDrawerNavigator = () => {
                 options={{
                     // headerShown: true,
                     title: 'Test',
+                }}
+            />
+            <DrawerNavigator.Screen
+                name="drawerAccount"
+                component={AccountScreen}
+                options={{
+                    // headerShown: true,
+                    title: 'Mon compte',
                 }}
             />
         </DrawerNavigator.Navigator>

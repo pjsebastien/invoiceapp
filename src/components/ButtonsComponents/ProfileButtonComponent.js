@@ -11,7 +11,7 @@ const ProfileButtonComponent = () => {
         <TouchableOpacity
             activeOpacity={0.8}
             style={buttonsStyles.ButtonTop}
-            onPress={() => navigation.navigate('test')}
+            onPress={() => navigation.navigate('drawerAccount')}
         >
             <FontAwesome5
                 name="user"
