@@ -2,7 +2,7 @@ import axios from '../services/axios-instance';
 import Keys from '../services/Keys';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const SIGNUP = 'SIGNUP';
+export const AUTHENTICATE = 'AUTHENTICATE';
 export const SET_TRIAL_LOGIN = 'SET_TRIAL_LOGIN';
 export const FETCH_REFRESH_TOKEN = 'FETCH_REFRESH_TOKEN';
 export const LOGOUT = 'LOGOUT';
@@ -21,7 +21,7 @@ export const signUp = (email, password) => {
             .then(response => {
                 saveDataToStorage(response.data.idToken, response.data.refreshToken),
                     dispatch({
-                        type: SIGNUP,
+                        type: AUTHENTICATE,
                         userId: response.data.localId,
                         token: response.data.idToken,
                     });
@@ -30,6 +30,47 @@ export const signUp = (email, password) => {
                 throw new Error(error.response.data.error.message);
             });
     };
+};
+
+export const login = (email, password) => {
+    return async dispatch => {
+        await axios
+            .post(
+                `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${Keys.firebase}`,
+                {
+                    email: email,
+                    password: password,
+                    returnSecureToken: true,
+                },
+            )
+            .then(response => {
+                saveDataToStorage(response.data.idToken, response.data.refreshToken),
+                    dispatch({
+                        type: AUTHENTICATE,
+                        userId: response.data.localId,
+                        token: response.data.idToken,
+                    });
+            })
+            .catch(error => {
+                throw new Error(error.response.data.error.message);
+            });
+    };
+};
+export const resetPassword = async email => {
+    await axios
+        .post(
+            `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${Keys.firebase}`,
+            {
+                email: email,
+                requestType: 'PASSWORD_RESET',
+            },
+        )
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            throw new Error(error.response.data.error.message);
+        });
 };
 
 const saveDataToStorage = (token, refreshToken) => {

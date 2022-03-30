@@ -13,27 +13,55 @@ import authenticatorStyles from '../styles/authenticator/authenticatorStyles';
 import { Controller, useForm } from 'react-hook-form';
 import * as authActions from '../store/actions/authenticator';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 const Authenticator = props => {
     const [loginMode, setLoginMode] = useState(false);
+    const navigation = useNavigation();
     const {
         control,
         handleSubmit,
         formState: { errors },
+        watch,
     } = useForm();
 
     const dispatch = useDispatch();
-    const isAuth = useSelector(state => state.authenticator.userId);
-
-    console.log(isAuth);
+    // const isAuth = useSelector(state => state.authenticator.userId);
 
     const onSubmit = async data => {
         if (loginMode) {
             //connexion
+            try {
+                await dispatch(authActions.login(data.email, data.password));
+                navigation.navigate('app');
+            } catch (error) {
+                switch (error.message) {
+                    case 'EMAIL_NOT_FOUND':
+                        Alert.alert(
+                            `Connexion impossible`,
+                            `Cette adresse email n'a pas été reconnue.`,
+                        );
+                        break;
+                    case 'INVALID_PASSWORD':
+                        Alert.alert(`Connexion impossible`, `Mot de passe incorrect.`);
+                        break;
+                    case 'USER_DISABLED':
+                        Alert.alert(
+                            `Connexion impossible`,
+                            `Votre compte a été désactivé.`,
+                        );
+                        break;
+                    default:
+                        Alert.alert(
+                            `Connexion impossible`,
+                            `Une erreur est survenue, merci de réessayer plus tard.`,
+                        );
+                }
+            }
         } else {
             try {
                 await dispatch(authActions.signUp(data.email, data.password));
-                props.navigation.navigate('app');
+                navigation.navigate('app');
             } catch (error) {
                 switch (error.message) {
                     case 'EMAIL_EXISTS':
@@ -66,10 +94,10 @@ const Authenticator = props => {
             <View style={authenticatorStyles.container}>
                 <SafeAreaView style={{ flex: 1 }}>
                     <View style={authenticatorStyles.secondaryContainer}>
-                        <Text>Authenticator</Text>
+                        <Text>InvoiceApp</Text>
                         <View style={authenticatorStyles.formContainer}>
                             <Text style={authenticatorStyles.label}>
-                                Entrez vodre adresse mail
+                                Entrez votre adresse mail
                             </Text>
                             <Controller
                                 control={control}
@@ -100,7 +128,7 @@ const Authenticator = props => {
                                 </Text>
                             )}
                             <Text style={authenticatorStyles.label}>
-                                Entrez vodre mot de passe
+                                Entrez votre mot de passe
                             </Text>
                             <Controller
                                 control={control}
@@ -117,7 +145,7 @@ const Authenticator = props => {
                                 rules={{
                                     required: {
                                         value: true,
-                                        message: 'Mot de passe non renseignée.',
+                                        message: 'Mot de passe non renseigné.',
                                     },
                                     minLength: {
                                         value: 8,
@@ -130,6 +158,42 @@ const Authenticator = props => {
                                 <Text style={authenticatorStyles.errorMessage}>
                                     {errors.password.message}
                                 </Text>
+                            )}
+                            {loginMode ? null : (
+                                <View>
+                                    <Text style={authenticatorStyles.label}>
+                                        Confirmez votre mot de passe
+                                    </Text>
+                                    <Controller
+                                        control={control}
+                                        render={({ field: { value, onChange } }) => (
+                                            <TextInput
+                                                placeholder="Confirmez le mot de passe"
+                                                value={value}
+                                                onChangeText={value => onChange(value)}
+                                                secureTextEntry={true}
+                                                style={authenticatorStyles.input}
+                                            />
+                                        )}
+                                        name="confirmPassword"
+                                        rules={{
+                                            required: {
+                                                value: true,
+                                                message: 'Confimez votre mot de passe.',
+                                            },
+                                            validate: val => {
+                                                if (watch('password') != val) {
+                                                    return 'Vos mots de passes ne correspondent pas.';
+                                                }
+                                            },
+                                        }}
+                                    />
+                                    {errors.confirmPassword && (
+                                        <Text style={authenticatorStyles.errorMessage}>
+                                            {errors.confirmPassword.message}
+                                        </Text>
+                                    )}
+                                </View>
                             )}
                         </View>
                         <Text style={authenticatorStyles.privacyPolicy}>
@@ -157,6 +221,16 @@ const Authenticator = props => {
                                     : `Déjà inscrit ? Se connecter.`}
                             </Text>
                         </TouchableOpacity>
+                        {loginMode ? (
+                            <TouchableOpacity
+                                activeOpacity={0.75}
+                                onPress={() => navigation.navigate('resetPassword')}
+                            >
+                                <Text style={authenticatorStyles.resetPassword}>
+                                    Mot de passe oublié ?
+                                </Text>
+                            </TouchableOpacity>
+                        ) : null}
                     </View>
                 </SafeAreaView>
             </View>

@@ -9,6 +9,7 @@ const homeDashboardStyles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: appTheme.Size.size40,
         height: appTheme.Size.size440,
+        marginBottom: appTheme.Size.size10,
     },
     sideContainer: {
         flexDirection: 'column',

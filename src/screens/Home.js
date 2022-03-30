@@ -1,4 +1,4 @@
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, ScrollView } from 'react-native';
 import React from 'react';
 import generalStyles from '../styles/general/generalStyles';
 import TopButtonsComponent from '../components/HomeComponents/TopButtonsComponent';
@@ -9,12 +9,14 @@ import DashboardHomeComponent from '../components/HomeComponents/DashboardHomeCo
 const Home = () => {
     return (
         <View style={generalStyles.mainContainer}>
-            <SafeAreaView style={generalStyles.container}>
-                <TopButtonsComponent />
-                <TopHelloText />
-                <ActionsButtonComponent />
-                <DashboardHomeComponent />
-            </SafeAreaView>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <SafeAreaView style={generalStyles.container}>
+                    <TopButtonsComponent />
+                    <TopHelloText />
+                    <ActionsButtonComponent />
+                    <DashboardHomeComponent />
+                </SafeAreaView>
+            </ScrollView>
         </View>
     );
 };

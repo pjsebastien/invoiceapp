@@ -3,6 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import HomeScreen from '../screens/Home';
 import TestScreen from '../screens/Test';
+import ResetPasswordScreen from '../screens/ResetPassword';
 import AuthenticatorScreen from '../screens/Authenticator';
 import StartupScreen from '../screens/Startup';
 
@@ -60,6 +61,11 @@ export const AuthenticatorStackNavigator = () => {
             <AuthenticatorNavigator.Screen
                 name="authenticator"
                 component={AuthenticatorScreen}
+                options={{ headerShown: false }}
+            />
+            <AuthenticatorNavigator.Screen
+                name="resetPassword"
+                component={ResetPasswordScreen}
                 options={{ headerShown: false }}
             />
         </AuthenticatorNavigator.Navigator>

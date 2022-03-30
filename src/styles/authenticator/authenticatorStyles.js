@@ -56,6 +56,11 @@ const authenticatorStyles = StyleSheet.create({
         marginTop: appTheme.Size.size10,
         color: Colors.textPrimary,
     },
+    resetPassword: {
+        marginTop: appTheme.Size.size16,
+        color: Colors.textPrimary,
+        fontSize: appTheme.Size.size10,
+    },
 });
 
 export default authenticatorStyles;

@@ -1,5 +1,5 @@
 import {
-    SIGNUP,
+    AUTHENTICATE,
     FETCH_REFRESH_TOKEN,
     SET_TRIAL_LOGIN,
     LOGOUT,
@@ -13,7 +13,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case SIGNUP:
+        case AUTHENTICATE:
             return {
                 ...state,
                 userId: action.userId,
