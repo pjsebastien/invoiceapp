@@ -16,12 +16,13 @@ const homeStyles = StyleSheet.create({
         fontWeight: '200',
         fontSize: appTheme.Size.size20,
         color: Colors.textPrimary,
+        fontFamily: 'Orkney-regular',
     },
     topSecondText: {
         textTransform: 'capitalize',
-        fontWeight: 'bold',
         fontSize: appTheme.Size.size32,
         color: Colors.textPrimary,
+        fontFamily: 'Orkney-bold',
     },
     actionButtonsContainer: {
         flexDirection: 'row',

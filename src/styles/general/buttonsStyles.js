@@ -11,11 +11,16 @@ const buttonsStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    topContainerButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: appTheme.Size.size14,
+    },
 
     profileButtonText: {
         color: Colors.backgroundSecondary,
         textTransform: 'uppercase',
-        fontWeight: 'bold',
+        fontFamily: 'Orkney-bold',
     },
     actionButtonContainer: {
         backgroundColor: Colors.backgroundSecondary,
@@ -33,7 +38,7 @@ const buttonsStyles = StyleSheet.create({
         paddingRight: appTheme.Size.size4,
         fontSize: appTheme.Size.size16,
         textTransform: 'capitalize',
-        fontWeight: 'bold',
+        fontFamily: 'Orkney-bold',
     },
     actionAddIcon: {
         top: appTheme.Size.size12,

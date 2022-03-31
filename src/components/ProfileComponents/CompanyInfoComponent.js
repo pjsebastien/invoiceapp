@@ -9,13 +9,12 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 const CompanyInfoComponent = () => {
     const navigation = useNavigation();
     return (
-        <View
-            style={{
-                ...accountStyles.infoContainer,
-                backgroundColor: Colors.backgroundSecondary,
-            }}
-        >
+        <View>
             <TouchableOpacity
+                style={{
+                    ...accountStyles.infoContainer,
+                    backgroundColor: Colors.backgroundSecondary,
+                }}
                 activeOpacity={0.8}
                 onPress={() => navigation.navigate('userInfoForm')}
             >

@@ -11,6 +11,7 @@ const Size = {
     size14: Metrics.screenWidth * (14 / 365),
     size15: Metrics.screenWidth * (15 / 365),
     size16: Metrics.screenWidth * (16 / 365),
+    size18: Metrics.screenWidth * (18 / 365),
     size20: Metrics.screenWidth * (20 / 365),
     size24: Metrics.screenWidth * (24 / 365),
     size25: Metrics.screenWidth * (25 / 365),

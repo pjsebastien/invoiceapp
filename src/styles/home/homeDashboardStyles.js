@@ -29,6 +29,7 @@ const homeDashboardStyles = StyleSheet.create({
         marginTop: appTheme.Size.size12,
         paddingLeft: appTheme.Size.size14,
         color: Colors.backgroundSecondary,
+        fontFamily: 'Orkney-bold',
     },
     contentCardNumber: {
         fontSize: appTheme.Size.size50,
@@ -36,12 +37,14 @@ const homeDashboardStyles = StyleSheet.create({
         marginTop: -appTheme.Size.size12,
         paddingLeft: appTheme.Size.size14,
         color: Colors.backgroundSecondary,
+        fontFamily: 'Source-serif-bold',
     },
     contentCardText: {
         fontSize: appTheme.Size.size14,
         paddingLeft: appTheme.Size.size20,
         marginTop: -appTheme.Size.size6,
         color: Colors.backgroundSecondary,
+        fontFamily: 'Orkney-regular',
     },
     bottomCard: {
         backgroundColor: Colors.primaryDarker,
@@ -53,7 +56,7 @@ const homeDashboardStyles = StyleSheet.create({
     },
     textBottomCard: {
         color: Colors.backgroundSecondary,
-        fontWeight: 'bold',
+        fontFamily: 'Orkney-bold',
     },
     smallCard: {
         backgroundColor: Colors.third,
