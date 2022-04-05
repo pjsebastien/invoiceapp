@@ -1,4 +1,4 @@
-import { ADD_USER_INFO } from '../actions/userInfo';
+import { ADD_USER_INFO, GET_USER_INFO } from '../actions/userInfo';
 
 const initialState = {
     userInfo: [],
@@ -10,7 +10,13 @@ export default (state = initialState, action) => {
         case ADD_USER_INFO:
             return {
                 ...state,
-                userInfo: [action.userInfo, ...state.userInfo],
+                userInfo: action.userInfo,
+            };
+        case GET_USER_INFO:
+            const fetchedUserInfo = action.userInfos;
+            return {
+                ...state,
+                userInfo: fetchedUserInfo,
             };
         default:
             return state;

@@ -9,9 +9,9 @@ const accountStyles = StyleSheet.create({
         marginVertical: appTheme.Size.size25,
     },
     headerLogoImage: {
-        borderRadius: 100,
-        width: appTheme.Size.size100,
-        height: appTheme.Size.size100,
+        borderRadius: 75,
+        width: appTheme.Size.size150,
+        height: appTheme.Size.size150,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: Colors.third,

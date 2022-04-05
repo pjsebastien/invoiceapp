@@ -4,10 +4,13 @@ import accountStyles from '../../styles/account/accountStyles';
 import { Feather } from '@expo/vector-icons';
 import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { useGetUserInfo } from '../../hooks/UserInfoHooks';
 
 const CompanyInfoComponent = () => {
     const navigation = useNavigation();
+    const fetchedUserInfo = useGetUserInfo();
+
     return (
         <View>
             <TouchableOpacity
@@ -24,8 +27,15 @@ const CompanyInfoComponent = () => {
                     </Text>
                     <View style={accountStyles.infoTextContainer}>
                         <Text style={accountStyles.labelInfo}>Adresse : </Text>
+
                         <Text style={accountStyles.textInfo}>
-                            83 rue du foutr à chaux, appartement F 97410 Saint Pierre
+                            {fetchedUserInfo.adressStreet}
+                        </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.adressLineTwo}
+                        </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.adressCity}
                         </Text>
                     </View>
                     <View style={accountStyles.infoTextContainer}>

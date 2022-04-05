@@ -23,6 +23,7 @@ const Size = {
     size42: Metrics.screenWidth * (42 / 365),
     size50: Metrics.screenWidth * (50 / 365),
     size100: Metrics.screenWidth * (100 / 365),
+    size130: Metrics.screenWidth * (130 / 365),
     size150: Metrics.screenWidth * (150 / 365),
     size160: Metrics.screenWidth * (160 / 365),
     size190: Metrics.screenWidth * (190 / 365),

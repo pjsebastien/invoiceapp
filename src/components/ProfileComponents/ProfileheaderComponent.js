@@ -5,8 +5,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
 import { useNavigation } from '@react-navigation/native';
+import AddPictureComponent from '../GeneralComponents/AddPictureComponent';
 
-const ProfileheaderComponent = () => {
+const ProfileheaderComponent = ({ logo }) => {
     const navigation = useNavigation();
     return (
         <View>
@@ -19,13 +20,9 @@ const ProfileheaderComponent = () => {
                     <Text style={accountStyles.headerName}>Ajouter</Text>
                     <Text style={accountStyles.headerCompany}>(Entreprise)</Text>
                 </View>
-                <View activeOpacity={0.8} style={accountStyles.headerLogoImage}>
-                    <MaterialCommunityIcons
-                        name="image-plus"
-                        size={appTheme.Size.size42}
-                        color={Colors.primaryDarker}
-                    />
-                </View>
+                <AddPictureComponent
+                    onPress={() => navigation.navigate('userInfoForm')}
+                />
             </TouchableOpacity>
         </View>
     );

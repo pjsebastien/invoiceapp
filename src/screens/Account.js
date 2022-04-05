@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, SafeAreaView } from 'react-native';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import React from 'react';
 import generalStyles from '../styles/general/generalStyles';
 import ProfileheaderComponent from '../components/ProfileComponents/ProfileheaderComponent';
