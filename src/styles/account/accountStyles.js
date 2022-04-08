@@ -1,11 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
 
 const accountStyles = StyleSheet.create({
     headerContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
+        alignItems: 'center',
         marginVertical: appTheme.Size.size25,
     },
     headerLogoImage: {
@@ -16,19 +17,19 @@ const accountStyles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Colors.third,
     },
-    headerRightContainer: {
-        alignItems: 'flex-start',
+    headerTextContainer: {
+        alignItems: 'center',
         justifyContent: 'center',
-        marginRight: appTheme.Size.size15,
+        marginTop: appTheme.Size.size10,
     },
     headerName: {
         fontSize: appTheme.Size.size30,
-        color: Colors.textPrimary,
+        color: Colors.primaryDarker,
         fontFamily: 'Orkney-bold',
     },
     headerCompany: {
         fontSize: appTheme.Size.size16,
-        color: Colors.textPrimary,
+        color: Colors.primary,
         fontFamily: 'Orkney-regular',
     },
     infoContainer: {
@@ -66,6 +67,29 @@ const accountStyles = StyleSheet.create({
         fontSize: appTheme.Size.size16,
         color: Colors.textPrimary,
         fontFamily: 'Orkney-regular',
+    },
+    buttonModalContainer: {
+        alignItems: 'center',
+        width: Dimensions.get('window').width - appTheme.Size.size30,
+        marginBottom: appTheme.Size.size10,
+    },
+    imageSign64: {
+        width: Dimensions.get('window').width - appTheme.Size.size30,
+        height: appTheme.Size.size130,
+    },
+    imageSign64Void: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: appTheme.Size.size16,
+        color: Colors.textPrimary,
+        fontFamily: 'Orkney-bold',
+    },
+    saveButtonContainer: {
+        marginBottom: appTheme.Size.size36,
+    },
+    signTitleContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
 });
 

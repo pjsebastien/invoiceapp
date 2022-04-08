@@ -3,10 +3,6 @@ import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
 
 const homeStyles = StyleSheet.create({
-    topButtons: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
     topTextContainer: {
         marginVertical: appTheme.Size.size24,
         marginHorizontal: appTheme.Size.size10,

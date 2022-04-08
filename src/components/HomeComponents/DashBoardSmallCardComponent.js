@@ -4,9 +4,13 @@ import React from 'react';
 import homeDashboardStyles from '../../styles/home/homeDashboardStyles';
 import Colors from '../../theme/colors';
 
-const DashBoardSmallCardComponent = ({ title, number, status }) => {
+const DashBoardSmallCardComponent = ({ title, number, status, onPress }) => {
     return (
-        <TouchableOpacity activeOpacity={0.75} style={homeDashboardStyles.smallCard}>
+        <TouchableOpacity
+            activeOpacity={0.75}
+            style={homeDashboardStyles.smallCard}
+            onPress={onPress}
+        >
             <View>
                 <Text style={homeDashboardStyles.titleCard}>{title}</Text>
             </View>

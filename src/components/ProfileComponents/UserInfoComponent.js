@@ -1,46 +1,97 @@
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import accountStyles from '../../styles/account/accountStyles';
 import { Feather } from '@expo/vector-icons';
 import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
+import { useNavigation } from '@react-navigation/native';
+import { useGetUserInfo } from '../../hooks/UserInfoHooks';
 
 const UserInfoComponent = () => {
+    const navigation = useNavigation();
+    const fetchedUserInfo = useGetUserInfo();
     return (
-        <View
-            style={{
-                ...accountStyles.infoContainer,
-                backgroundColor: Colors.backgroundSecondary,
-            }}
-        >
-            <View>
-                <Text style={accountStyles.titleInfo}>Informations de l'utilisateur</Text>
-                <View style={accountStyles.infoTextContainer}>
-                    <Text style={accountStyles.labelInfo}>Adresse : </Text>
-                    <Text style={accountStyles.textInfo}>
-                        83 rue du foutr à chaux, appartement F 97410 Saint Pierre
-                    </Text>
+        <View>
+            <TouchableOpacity
+                style={{
+                    ...accountStyles.infoContainer,
+                    backgroundColor: Colors.backgroundColor,
+                }}
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate('userInfoForm')}
+            >
+                <View>
+                    <Text style={accountStyles.titleInfo}>Détails de l'entreprise :</Text>
+                    <View style={accountStyles.infoTextContainer}>
+                        <Text style={accountStyles.labelInfo}>Statut juridique : </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.statut}
+                        </Text>
+                    </View>
+                    <View style={accountStyles.infoTextContainer}>
+                        <Text style={accountStyles.labelInfo}>Numéro SIRET : </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.siret}
+                        </Text>
+                    </View>
+                    <View style={accountStyles.infoTextContainer}>
+                        <Text style={accountStyles.labelInfo}>Numéro RCS : </Text>
+                        <Text style={accountStyles.textInfo}>{fetchedUserInfo.rcs}</Text>
+                    </View>
+                    <View style={accountStyles.infoTextContainer}>
+                        <Text style={accountStyles.labelInfo}>Numéro de TVA : </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.tva ? fetchedUserInfo.tva : 'exonéré'}
+                        </Text>
+                    </View>
                 </View>
-                <View style={accountStyles.infoTextContainer}>
-                    <Text style={accountStyles.labelInfo}>Nom : </Text>
-                    <Text style={accountStyles.textInfo}>Margouill'app</Text>
+                <View>
+                    <Feather
+                        name="edit"
+                        size={appTheme.Size.size16}
+                        color={Colors.primaryDarker}
+                    />
                 </View>
-                <View style={accountStyles.infoTextContainer}>
-                    <Text style={accountStyles.labelInfo}>Téléphone : </Text>
-                    <Text style={accountStyles.textInfo}>0693 21 44 85</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    ...accountStyles.infoContainer,
+                    backgroundColor: Colors.backgroundColor,
+                }}
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate('userInfoForm')}
+            >
+                <View>
+                    <View style={accountStyles.signTitleContainer}>
+                        <Text style={accountStyles.titleInfo}>Signature :</Text>
+                        <View style={{ marginRight: appTheme.Size.size36 }}>
+                            <Feather
+                                name="edit"
+                                size={appTheme.Size.size16}
+                                color={Colors.primaryDarker}
+                            />
+                        </View>
+                    </View>
+                    {fetchedUserInfo.signImage ? (
+                        <Image
+                            resizeMode={'contain'}
+                            style={accountStyles.imageSign64}
+                            source={{
+                                uri: fetchedUserInfo.signImage,
+                            }}
+                        />
+                    ) : (
+                        <View
+                            style={{
+                                ...accountStyles.imageSign64,
+                                ...accountStyles.imageSign64Void,
+                            }}
+                        >
+                            <Text>Cliquez ici pour signer</Text>
+                        </View>
+                    )}
                 </View>
-                <View style={accountStyles.infoTextContainer}>
-                    <Text style={accountStyles.labelInfo}>Mail : </Text>
-                    <Text style={accountStyles.textInfo}>pj.sebastien@gmail.com</Text>
-                </View>
-            </View>
-            <View>
-                <Feather
-                    name="edit"
-                    size={appTheme.Size.size16}
-                    color={Colors.primaryDarker}
-                />
-            </View>
+            </TouchableOpacity>
         </View>
     );
 };

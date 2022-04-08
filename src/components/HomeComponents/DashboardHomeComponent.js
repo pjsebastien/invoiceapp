@@ -7,9 +7,11 @@ import { useSelector } from 'react-redux';
 import DashBoardSmallCardComponent from './DashBoardSmallCardComponent';
 import DashboardInvoiceCardComponents from './DashboardInvoiceCardComponents';
 import DashboardChartCardComponent from './DashboardChartCardComponent';
+import { useNavigation } from '@react-navigation/native';
 
 const DashboardHomeComponent = () => {
     const invoices = useSelector(state => state.app.invoices);
+    const navigation = useNavigation();
 
     return (
         <View style={homeDashboardStyles.mainContainer}>
@@ -18,6 +20,7 @@ const DashboardHomeComponent = () => {
                     title={'Devis'}
                     number={'5'}
                     status={'En cours'}
+                    onPress={() => navigation.navigate('drawerEstimations')}
                 />
 
                 <DashboardChartCardComponent />
@@ -27,12 +30,14 @@ const DashboardHomeComponent = () => {
                     title={'factures'}
                     number={invoices.length}
                     status={'En cours'}
+                    onPress={() => navigation.navigate('drawerInvoices')}
                 />
 
                 <DashBoardSmallCardComponent
                     title={'Clients'}
                     number={'50'}
                     status={'Enregistrés'}
+                    onPress={() => navigation.navigate('drawerClients')}
                 />
             </View>
         </View>

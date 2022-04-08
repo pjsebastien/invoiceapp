@@ -1,6 +1,5 @@
 import { doc, setDoc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../db/firebase';
-import UserInfoForm from '../../screens/UserInfoForm';
 
 export const ADD_USER_INFO = 'ADD_USER_INFO';
 export const GET_USER_INFO = 'GET_USER_INFO';
@@ -11,13 +10,13 @@ export const addUserInfo = (userInfo, userId, token) => {
             setDoc(doc(db, 'userInfo', userId), userInfo);
             const newUserInfo = {
                 logo: userInfo.logo,
-                userName: userInfo.username,
+                userName: userInfo.userName,
                 familyName: userInfo.familyName,
-                companyName: userInfo.companyname,
+                companyName: userInfo.companyName,
                 adressStreet: userInfo.adressStreet,
                 adressLineTwo: userInfo.adressLineTwo,
                 adressCity: userInfo.adressCity,
-                webSite: userInfo.website,
+                webSite: userInfo.webSite,
                 mail: userInfo.mail,
                 mobilePhone: userInfo.mobilePhone,
                 fixPhone: userInfo.fixPhone,
@@ -25,6 +24,7 @@ export const addUserInfo = (userInfo, userId, token) => {
                 siret: userInfo.siret,
                 rcs: userInfo.rcs,
                 tvaNumber: userInfo.tvaNumber,
+                signImage: userInfo.signImage,
             };
 
             dispatch({ type: ADD_USER_INFO, userInfo: newUserInfo });

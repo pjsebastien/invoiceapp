@@ -13,6 +13,13 @@ const generalStyles = StyleSheet.create({
         marginTop:
             Platform.OS === 'android' ? appTheme.Size.size40 : appTheme.Size.size20,
     },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: Colors.backgroundColor,
+        paddingHorizontal: appTheme.Size.size15,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+    },
 });
 
 export default generalStyles;

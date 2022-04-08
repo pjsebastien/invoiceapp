@@ -16,15 +16,25 @@ const CompanyInfoComponent = () => {
             <TouchableOpacity
                 style={{
                     ...accountStyles.infoContainer,
-                    backgroundColor: Colors.backgroundSecondary,
+                    backgroundColor: Colors.backgroundColor,
                 }}
                 activeOpacity={0.8}
                 onPress={() => navigation.navigate('userInfoForm')}
             >
                 <View>
-                    <Text style={accountStyles.titleInfo}>
-                        Informations de l'entreprise
-                    </Text>
+                    <Text style={accountStyles.titleInfo}>Coordonnées :</Text>
+                    <View style={accountStyles.infoTextContainer}>
+                        <Text style={accountStyles.labelInfo}>Nom de l'entreprise :</Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.companyName}
+                        </Text>
+                    </View>
+                    <View style={accountStyles.infoTextContainer}>
+                        <Text style={accountStyles.labelInfo}>Gérant :</Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.userName} {fetchedUserInfo.familyName}
+                        </Text>
+                    </View>
                     <View style={accountStyles.infoTextContainer}>
                         <Text style={accountStyles.labelInfo}>Adresse : </Text>
 
@@ -38,17 +48,28 @@ const CompanyInfoComponent = () => {
                             {fetchedUserInfo.adressCity}
                         </Text>
                     </View>
+
                     <View style={accountStyles.infoTextContainer}>
-                        <Text style={accountStyles.labelInfo}>Nom : </Text>
-                        <Text style={accountStyles.textInfo}>Margouill'app</Text>
+                        <Text style={accountStyles.labelInfo}>Téléphone mobile : </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.mobilePhone}
+                        </Text>
                     </View>
                     <View style={accountStyles.infoTextContainer}>
-                        <Text style={accountStyles.labelInfo}>Téléphone : </Text>
-                        <Text style={accountStyles.textInfo}>0693 21 44 85</Text>
+                        <Text style={accountStyles.labelInfo}>Téléphone fix : </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.fixPhone}
+                        </Text>
                     </View>
                     <View style={accountStyles.infoTextContainer}>
                         <Text style={accountStyles.labelInfo}>Mail : </Text>
-                        <Text style={accountStyles.textInfo}>pj.sebastien@gmail.com</Text>
+                        <Text style={accountStyles.textInfo}>{fetchedUserInfo.mail}</Text>
+                    </View>
+                    <View style={accountStyles.infoTextContainer}>
+                        <Text style={accountStyles.labelInfo}>Site internet : </Text>
+                        <Text style={accountStyles.textInfo}>
+                            {fetchedUserInfo.webSite}
+                        </Text>
                     </View>
                 </View>
                 <View>

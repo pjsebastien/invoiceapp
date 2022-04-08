@@ -4,10 +4,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from '../screens/Home';
 import TestScreen from '../screens/Test';
 import AccountScreen from '../screens/Account';
-import UserInfoFormScreen from '../screens/UserInfoForm';
+import UserInfoFormScreen from '../screens/forms/UserInfoForm';
+import ClientInfoFormScreen from '../screens/forms/ClientInfoForm';
 import ResetPasswordScreen from '../screens/ResetPassword';
 import AuthenticatorScreen from '../screens/Authenticator';
 import StartupScreen from '../screens/Startup';
+import ClientsScreen from '../screens/Clients';
+import InvoicesScreen from '../screens/Invoices';
+import EstimationsScreen from '../screens/Estimations';
 
 //AppStackNavigator
 const StackNavigator = createStackNavigator();
@@ -29,6 +33,11 @@ export const AppStackNavigator = () => {
             <StackNavigator.Screen
                 name="userInfoForm"
                 component={UserInfoFormScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="clientInfoForm"
+                component={ClientInfoFormScreen}
                 options={{ headerShown: false }}
             />
         </StackNavigator.Navigator>
@@ -62,6 +71,30 @@ const AppDrawerNavigator = () => {
                 options={{
                     // headerShown: true,
                     title: 'Mon compte',
+                }}
+            />
+            <DrawerNavigator.Screen
+                name="drawerClients"
+                component={ClientsScreen}
+                options={{
+                    // headerShown: true,
+                    title: 'Clients',
+                }}
+            />
+            <DrawerNavigator.Screen
+                name="drawerEstimations"
+                component={EstimationsScreen}
+                options={{
+                    // headerShown: true,
+                    title: 'Devis',
+                }}
+            />
+            <DrawerNavigator.Screen
+                name="drawerInvoices"
+                component={InvoicesScreen}
+                options={{
+                    // headerShown: true,
+                    title: 'Factures',
                 }}
             />
         </DrawerNavigator.Navigator>

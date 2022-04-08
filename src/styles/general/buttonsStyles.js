@@ -3,6 +3,10 @@ import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
 
 const buttonsStyles = StyleSheet.create({
+    topButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     ButtonTop: {
         backgroundColor: Colors.primary,
         borderRadius: 25,
@@ -33,6 +37,7 @@ const buttonsStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+
     actionText: {
         color: Colors.primary,
         paddingRight: appTheme.Size.size4,
@@ -44,6 +49,22 @@ const buttonsStyles = StyleSheet.create({
         top: appTheme.Size.size12,
         backgroundColor: Colors.backgroundColor,
         borderRadius: 100,
+    },
+    buttonThirdColor: {
+        backgroundColor: Colors.third,
+        color: Colors.backgroundSecondary,
+        paddingVertical: appTheme.Size.size10,
+        paddingHorizontal: appTheme.Size.size20,
+        textAlign: 'center',
+        borderRadius: 10,
+        fontFamily: 'Orkney-bold',
+        fontSize: appTheme.Size.size16,
+    },
+    ButtonAddStatic: {
+        position: 'absolute',
+        bottom: appTheme.Size.size15,
+        right: appTheme.Size.size15,
+        alignSelf: 'flex-end',
     },
 });
 

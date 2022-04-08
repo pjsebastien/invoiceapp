@@ -1,9 +1,13 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import homeDashboardStyles from '../../styles/home/homeDashboardStyles';
 
-const DashboardInvoiceCardComponents = ({ title, number, status }) => {
+const DashboardInvoiceCardComponents = ({ title, number, status, onPress }) => {
     return (
-        <TouchableOpacity activeOpacity={0.75} style={homeDashboardStyles.card}>
+        <TouchableOpacity
+            activeOpacity={0.75}
+            style={homeDashboardStyles.card}
+            onPress={onPress}
+        >
             <View>
                 <Text style={homeDashboardStyles.titleCard}>{title}</Text>
             </View>
