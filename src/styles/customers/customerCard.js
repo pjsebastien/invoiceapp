@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
 
-const clientCard = StyleSheet.create({
+const customerCard = StyleSheet.create({
     cardContainer: {
         width: Dimensions.get('window').width - appTheme.Size.size30,
         marginVertical: appTheme.Size.size10,
@@ -23,20 +23,31 @@ const clientCard = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    clientNameText: {
+    cardBottom: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    customerNameText: {
         color: Colors.textPrimary,
         fontFamily: 'Orkney-bold',
-
         fontSize: appTheme.Size.size18,
-        marginBottom: appTheme.Size.size10,
     },
-    clientSentText: {
+    customerTypeText: {
+        color: Colors.textPrimary,
+        fontFamily: 'Orkney-regular',
+        fontSize: appTheme.Size.size8,
+        marginBottom: appTheme.Size.size8,
+    },
+    customerSentText: {
         color: Colors.textPrimary,
         fontFamily: 'Orkney-regular',
         fontSize: appTheme.Size.size12,
         marginTop: appTheme.Size.size2,
     },
-    clientDescriptionText: {
+    productsDetailsCard: {
+        height: 50,
+    },
+    customerDescriptionText: {
         color: Colors.textPrimary,
         fontFamily: 'Orkney-regular',
         fontSize: appTheme.Size.size12,
@@ -44,4 +55,4 @@ const clientCard = StyleSheet.create({
     },
 });
 
-export default clientCard;
+export default customerCard;

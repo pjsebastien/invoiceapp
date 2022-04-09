@@ -6,6 +6,7 @@ const buttonsStyles = StyleSheet.create({
     topButtons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
     ButtonTop: {
         backgroundColor: Colors.primary,

@@ -28,7 +28,7 @@ const DashboardHomeComponent = () => {
             <View style={homeDashboardStyles.sideContainer}>
                 <DashboardInvoiceCardComponents
                     title={'factures'}
-                    number={invoices.length}
+                    number={5}
                     status={'En cours'}
                     onPress={() => navigation.navigate('drawerInvoices')}
                 />
@@ -37,7 +37,7 @@ const DashboardHomeComponent = () => {
                     title={'Clients'}
                     number={'50'}
                     status={'Enregistrés'}
-                    onPress={() => navigation.navigate('drawerClients')}
+                    onPress={() => navigation.navigate('drawerCustomers')}
                 />
             </View>
         </View>

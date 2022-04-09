@@ -5,13 +5,15 @@ import HomeScreen from '../screens/Home';
 import TestScreen from '../screens/Test';
 import AccountScreen from '../screens/Account';
 import UserInfoFormScreen from '../screens/forms/UserInfoForm';
-import ClientInfoFormScreen from '../screens/forms/ClientInfoForm';
+import CustomerInfoFormScreen from '../screens/forms/CustomerInfoForm';
+import ProductsInfoScreen from '../screens/forms/ProductInfoForm';
 import ResetPasswordScreen from '../screens/ResetPassword';
 import AuthenticatorScreen from '../screens/Authenticator';
 import StartupScreen from '../screens/Startup';
-import ClientsScreen from '../screens/Clients';
+import CustomersScreen from '../screens/Customers';
 import InvoicesScreen from '../screens/Invoices';
 import EstimationsScreen from '../screens/Estimations';
+import ProductsScreen from '../screens/Products';
 
 //AppStackNavigator
 const StackNavigator = createStackNavigator();
@@ -36,8 +38,13 @@ export const AppStackNavigator = () => {
                 options={{ headerShown: false }}
             />
             <StackNavigator.Screen
-                name="clientInfoForm"
-                component={ClientInfoFormScreen}
+                name="customerInfoForm"
+                component={CustomerInfoFormScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="productInfoForm"
+                component={ProductsInfoScreen}
                 options={{ headerShown: false }}
             />
         </StackNavigator.Navigator>
@@ -74,8 +81,8 @@ const AppDrawerNavigator = () => {
                 }}
             />
             <DrawerNavigator.Screen
-                name="drawerClients"
-                component={ClientsScreen}
+                name="drawerCustomers"
+                component={CustomersScreen}
                 options={{
                     // headerShown: true,
                     title: 'Clients',
@@ -95,6 +102,14 @@ const AppDrawerNavigator = () => {
                 options={{
                     // headerShown: true,
                     title: 'Factures',
+                }}
+            />
+            <DrawerNavigator.Screen
+                name="drawerProducts"
+                component={ProductsScreen}
+                options={{
+                    // headerShown: true,
+                    title: 'Produits',
                 }}
             />
         </DrawerNavigator.Navigator>

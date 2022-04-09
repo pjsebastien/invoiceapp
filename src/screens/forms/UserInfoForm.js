@@ -28,6 +28,7 @@ import Colors from '../../theme/colors';
 import SignComponent from '../../components/ProfileComponents/SignComponent';
 import buttonsStyles from '../../styles/general/buttonsStyles';
 import { useFocusEffect } from '@react-navigation/native';
+import SaveButtonComponent from '../../components/ButtonsComponents/SaveButtonComponent';
 
 const UserInfoForm = props => {
     const [image, setImage] = useState();
@@ -603,15 +604,7 @@ const UserInfoForm = props => {
                             )}
                         </TouchableOpacity>
 
-                        <TouchableOpacity
-                            activeOpacity={0.8}
-                            onPress={handleSubmit(onSubmit)}
-                            style={accountStyles.saveButtonContainer}
-                        >
-                            <Text style={buttonsStyles.buttonThirdColor}>
-                                Sauvegarder
-                            </Text>
-                        </TouchableOpacity>
+                        <SaveButtonComponent onPress={handleSubmit(onSubmit)} />
                     </SafeAreaView>
                 </ScrollView>
             )}

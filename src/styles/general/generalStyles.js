@@ -20,6 +20,23 @@ const generalStyles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
     },
+    titleScreenText: {
+        fontSize: appTheme.Size.size18,
+        color: Colors.thirdDarker,
+        fontFamily: 'Orkney-bold',
+    },
+    searchInput: {
+        width: appTheme.Size.size160,
+    },
+    noDataContainer: {
+        alignItems: 'center',
+    },
+    noDataText: {
+        fontSize: appTheme.Size.size18,
+        color: Colors.primaryDarker,
+        fontFamily: 'Orkney-bold',
+        marginTop: appTheme.Size.size150,
+    },
 });
 
 export default generalStyles;
