@@ -5,11 +5,12 @@ import appTheme from '../../theme/fonts';
 import Colors from '../../theme/colors';
 import buttonsStyles from '../../styles/general/buttonsStyles';
 
-const ActionButtonComponent = ({ title }) => {
+const ActionButtonComponent = ({ title, onPress }) => {
     return (
         <TouchableOpacity
             activeOpacity={0.75}
             style={buttonsStyles.actionButtonContainer}
+            onPress={onPress}
         >
             <Text style={buttonsStyles.actionText}>{title}</Text>
             <Ionicons

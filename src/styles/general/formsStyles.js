@@ -78,6 +78,15 @@ const formStyles = StyleSheet.create({
         color: Colors.primaryDarker,
         fontFamily: 'Orkney-bold',
     },
+    ttcText: {
+        fontSize: appTheme.Size.size14,
+        color: Colors.textPrimary,
+        fontFamily: 'Orkney-regular',
+        paddingVertical: appTheme.Size.size6,
+        paddingLeft: appTheme.Size.size6,
+
+        marginBottom: 3,
+    },
 });
 
 export default formStyles;

@@ -6,6 +6,8 @@ import TestScreen from '../screens/Test';
 import AccountScreen from '../screens/Account';
 import UserInfoFormScreen from '../screens/forms/UserInfoForm';
 import CustomerInfoFormScreen from '../screens/forms/CustomerInfoForm';
+import CreateInvoiceFormScreen from '../screens/forms/CreateInvoiceForm';
+import CreateEstimationFormScreen from '../screens/forms/CreateEstimationForm';
 import ProductsInfoScreen from '../screens/forms/ProductInfoForm';
 import ResetPasswordScreen from '../screens/ResetPassword';
 import AuthenticatorScreen from '../screens/Authenticator';
@@ -45,6 +47,16 @@ export const AppStackNavigator = () => {
             <StackNavigator.Screen
                 name="productInfoForm"
                 component={ProductsInfoScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="createInvoiceForm"
+                component={CreateInvoiceFormScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="createEstimationForm"
+                component={CreateEstimationFormScreen}
                 options={{ headerShown: false }}
             />
         </StackNavigator.Navigator>

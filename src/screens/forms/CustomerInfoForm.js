@@ -37,7 +37,10 @@ const CustomerInfoForm = ({ props, route }) => {
     useFocusEffect(
         useCallback(() => {
             return () => {
-                BackHandler.removeEventListener('hardwareBackPress', onPressArrowBack);
+                BackHandler.removeEventListener(
+                    'hardwareBackPress',
+                    onPressArrowBackBottom,
+                );
             };
         }, []),
     );
@@ -137,9 +140,25 @@ const CustomerInfoForm = ({ props, route }) => {
 
         return true;
     };
+    const onPressArrowBackBottom = () => {
+        Alert.alert('Quitter sans sauvegarder ?', '', [
+            {
+                text: 'Annuler',
+                onPress: preventBackButtonHandling,
+                style: 'default',
+            },
+            {
+                text: 'OK',
+                onPress: () => navigation.goBack(),
+                style: 'default',
+            },
+        ]);
+
+        return true;
+    };
 
     const preventBackButtonHandling = () => {
-        BackHandler.addEventListener('hardwareBackPress', onPressArrowBack);
+        BackHandler.addEventListener('hardwareBackPress', onPressArrowBackBottom);
         return true;
     };
     return (

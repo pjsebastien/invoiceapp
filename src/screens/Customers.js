@@ -39,7 +39,7 @@ const Customers = () => {
         );
         setQuery('');
     };
-    console.log(searchedData);
+
     return (
         <View style={generalStyles.mainContainer}>
             <SafeAreaView style={generalStyles.container}>
