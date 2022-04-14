@@ -12,6 +12,12 @@ const authenticatorStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    mainTitle: {
+        color: Colors.secondary,
+        fontSize: appTheme.Size.size30,
+        marginTop: appTheme.Size.size2,
+        fontFamily: 'Orkney-bold',
+    },
     formContainer: {
         marginTop: appTheme.Size.size20,
     },
@@ -25,12 +31,14 @@ const authenticatorStyles = StyleSheet.create({
     label: {
         marginTop: appTheme.Size.size10,
         color: Colors.textPrimary,
+        fontFamily: 'Orkney-regular',
         marginBottom: appTheme.Size.size2,
     },
     errorMessage: {
         color: Colors.secondary,
-        fontSize: appTheme.Size.size12,
+        fontSize: appTheme.Size.size10,
         marginTop: appTheme.Size.size2,
+        fontFamily: 'Orkney-regular',
     },
     submitButton: {
         backgroundColor: Colors.primary,
@@ -44,11 +52,12 @@ const authenticatorStyles = StyleSheet.create({
     submitButtonText: {
         color: Colors.backgroundSecondary,
         fontSize: appTheme.Size.size16,
-        fontWeight: 'bold',
+        fontFamily: 'Orkney-bold',
     },
     privacyPolicy: {
         width: Dimensions.get('screen').width * 0.75,
-        fontSize: appTheme.Size.size12,
+        fontSize: appTheme.Size.size10,
+        fontFamily: 'Orkney-regular',
         color: Colors.textPrimary,
         marginTop: appTheme.Size.size10,
     },
@@ -60,6 +69,7 @@ const authenticatorStyles = StyleSheet.create({
         marginTop: appTheme.Size.size16,
         color: Colors.textPrimary,
         fontSize: appTheme.Size.size10,
+        fontFamily: 'Orkney-regular',
     },
 });
 

@@ -84,8 +84,27 @@ const formStyles = StyleSheet.create({
         fontFamily: 'Orkney-regular',
         paddingVertical: appTheme.Size.size6,
         paddingLeft: appTheme.Size.size6,
-
         marginBottom: 3,
+    },
+    selectCustomerContainer: {
+        backgroundColor: Colors.primaryDarker,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: appTheme.Size.size12,
+        marginVertical: appTheme.Size.size10,
+        height: appTheme.Size.size100,
+        borderRadius: 12,
+    },
+    selectCustomerText: {
+        color: Colors.backgroundSecondary,
+        fontFamily: 'Orkney-bold',
+        fontSize: appTheme.Size.size16,
+    },
+    selectCustomerTextSmall: {
+        color: Colors.backgroundSecondary,
+        fontFamily: 'Orkney-regular',
+        fontSize: appTheme.Size.size10,
     },
 });
 

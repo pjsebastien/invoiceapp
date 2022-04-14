@@ -1,20 +1,29 @@
-import { View, Text, SafeAreaView, FlatList, TextInput } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {
+    View,
+    Text,
+    SafeAreaView,
+    FlatList,
+    TextInput,
+    TouchableOpacity,
+} from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import generalStyles from '../styles/general/generalStyles';
 import DrawerMenuButtonComponent from '../components/ButtonsComponents/DrawerMenuButtonComponent';
 import buttonsStyles from '../styles/general/buttonsStyles';
 import SearchButtonComponent from '../components/ButtonsComponents/SearchButtonComponent';
 import CustomerCard from '../components/CustomersComponents/CustomerCard';
 import AddButtonComponent from '../components/ButtonsComponents/AddButtonComponent';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as customerInfoActions from '../store/actions/customerInfo';
 import RefreshButtonComponent from '../components/ButtonsComponents/RefreshButtonComponent';
+import BackButtonComponent from '../components/ButtonsComponents/BackButtonComponent';
 
-const Customers = () => {
+const Customers = ({ route }) => {
     const [searchActive, setSearchActive] = useState(false);
     const [query, setQuery] = useState('');
     const [searchedData, setSearchedData] = useState([]);
+    const [isFromSelectCustomer, setSelectedCustomer] = useState(false);
 
     const dispatch = useDispatch();
     const userId = useSelector(state => state.authenticator.userId);
@@ -23,7 +32,20 @@ const Customers = () => {
 
     useEffect(() => {
         dispatch(customerInfoActions.getCustomers(userId));
+        route?.params?.fromSelectCustomer
+            ? setSelectedCustomer(true)
+            : console.log('no params');
     }, []);
+    useFocusEffect(
+        useCallback(() => {
+            route?.params?.fromSelectCustomer
+                ? setSelectedCustomer(true)
+                : console.log('no params');
+            return () => {
+                setSelectedCustomer(false);
+            };
+        }, []),
+    );
 
     const handleSearchButton = () => {
         setSearchActive(!searchActive);
@@ -46,6 +68,8 @@ const Customers = () => {
                 <View style={buttonsStyles.topButtons}>
                     {searchedData.length > 0 ? (
                         <RefreshButtonComponent onPress={() => setSearchedData([])} />
+                    ) : isFromSelectCustomer ? (
+                        <BackButtonComponent onPress={() => navigation.goBack()} />
                     ) : (
                         <DrawerMenuButtonComponent />
                     )}
@@ -70,6 +94,12 @@ const Customers = () => {
                         </>
                     )}
                 </View>
+                <TouchableOpacity
+                    style={{ marginTop: 20 }}
+                    onPress={() => console.log(isFromSelectCustomer)}
+                >
+                    <Text>xxxxx</Text>
+                </TouchableOpacity>
                 <View style={generalStyles.container}>
                     {fetchedCustomers.length >= 1 ? (
                         <FlatList
@@ -82,7 +112,13 @@ const Customers = () => {
                                       )
                             }
                             renderItem={({ item }) => {
-                                return <CustomerCard data={item} key={item.id} />;
+                                return (
+                                    <CustomerCard
+                                        data={item}
+                                        key={item.id}
+                                        isFromSelectCustomer={isFromSelectCustomer}
+                                    />
+                                );
                             }}
                         />
                     ) : (
@@ -92,7 +128,13 @@ const Customers = () => {
                     )}
                 </View>
             </SafeAreaView>
-            <AddButtonComponent onPress={() => navigation.navigate('customerInfoForm')} />
+            <AddButtonComponent
+                onPress={() =>
+                    navigation.navigate('customerInfoForm', {
+                        isFromSelectCustomer: isFromSelectCustomer,
+                    })
+                }
+            />
         </View>
     );
 };

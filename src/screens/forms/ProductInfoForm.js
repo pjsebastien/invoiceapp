@@ -119,7 +119,6 @@ const ProductInfoForm = ({ route }) => {
     const ttcPriceCalculator = () => {
         const priceWithoutTaxes = getValues('priceWithoutTaxes');
         const tva = getValues('tva');
-        console.log(tva);
         if (priceWithoutTaxes !== undefined && tva !== undefined) {
             setPriceTtc(
                 Number(priceWithoutTaxes) +

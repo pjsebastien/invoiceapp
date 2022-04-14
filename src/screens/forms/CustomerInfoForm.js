@@ -6,6 +6,7 @@ import {
     TextInput,
     Alert,
     BackHandler,
+    TouchableOpacity,
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import generalStyles from '../../styles/general/generalStyles';
@@ -23,6 +24,7 @@ const CustomerInfoForm = ({ props, route }) => {
     const [isSelected, setSelection] = useState(true);
     const [onFocusInput, setOnFocusInput] = useState(null);
     const [dataToUpdate, setDataToUpdate] = useState(null);
+    const [isFromSelectCustomer, setIsFromSelectCustomer] = useState(false);
 
     const navigation = useNavigation();
 
@@ -32,6 +34,8 @@ const CustomerInfoForm = ({ props, route }) => {
 
     useEffect(() => {
         preventBackButtonHandling();
+        route?.params?.isFromSelectCustomer &&
+            setIsFromSelectCustomer(route.params.isFromSelectCustomer);
     }, []);
 
     useFocusEffect(
@@ -41,6 +45,7 @@ const CustomerInfoForm = ({ props, route }) => {
                     'hardwareBackPress',
                     onPressArrowBackBottom,
                 );
+                setIsFromSelectCustomer(false);
             };
         }, []),
     );
@@ -116,7 +121,9 @@ const CustomerInfoForm = ({ props, route }) => {
         dispatch(customerInfoActions.getCustomers(userId));
 
         Alert.alert('Merci,', 'Vos changements on étés pris en compte.');
-        navigation.navigate('drawerCustomers');
+        isFromSelectCustomer
+            ? navigation.navigate('createInvoiceForm', { selectedCustomer: customerInfo })
+            : navigation.navigate('drawerCustomers');
     };
 
     const onPressArrowBack = () => {
@@ -133,7 +140,10 @@ const CustomerInfoForm = ({ props, route }) => {
             },
             {
                 text: 'OK',
-                onPress: () => navigation.goBack(),
+                onPress: () =>
+                    isFromSelectCustomer
+                        ? navigation.navigate('customers', { fromSelectCustomer: true })
+                        : navigation.goBack(),
                 style: 'default',
             },
         ]);
@@ -149,7 +159,10 @@ const CustomerInfoForm = ({ props, route }) => {
             },
             {
                 text: 'OK',
-                onPress: () => navigation.goBack(),
+                onPress: () =>
+                    isFromSelectCustomer
+                        ? navigation.navigate('customers', { fromSelectCustomer: true })
+                        : navigation.goBack(),
                 style: 'default',
             },
         ]);
@@ -182,6 +195,12 @@ const CustomerInfoForm = ({ props, route }) => {
                             Client
                         </Text>
                     </View>
+                    <TouchableOpacity
+                        style={{ marginTop: 20 }}
+                        onPress={() => console.log(isFromSelectCustomer)}
+                    >
+                        <Text>xxxxx</Text>
+                    </TouchableOpacity>
                     <View style={formsStyles.checkBoxesContainer}>
                         <View style={formsStyles.checkBoxContainer}>
                             <Checkbox

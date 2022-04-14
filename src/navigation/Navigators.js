@@ -59,6 +59,11 @@ export const AppStackNavigator = () => {
                 component={CreateEstimationFormScreen}
                 options={{ headerShown: false }}
             />
+            <StackNavigator.Screen
+                name="customers"
+                component={CustomersScreen}
+                options={{ headerShown: false }}
+            />
         </StackNavigator.Navigator>
     );
 };

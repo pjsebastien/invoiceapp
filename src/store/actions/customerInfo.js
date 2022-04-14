@@ -105,8 +105,7 @@ export const getCustomers = userId => {
                 const customerInfo = Object.assign(idCustomer, doc.data());
                 fetchedCustomers.push(customerInfo);
             }),
-                console.log(fetchedCustomers);
-            dispatch({ type: GET_CUSTOMERS, customers: fetchedCustomers });
+                dispatch({ type: GET_CUSTOMERS, customers: fetchedCustomers });
         } catch (error) {
             console.log(error);
         }

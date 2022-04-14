@@ -37,7 +37,6 @@ const Products = () => {
         setQuery('');
     };
 
-    console.log('aqui', fetchedProducts);
     return (
         <View style={generalStyles.mainContainer}>
             <SafeAreaView style={generalStyles.container}>

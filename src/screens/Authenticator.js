@@ -94,7 +94,7 @@ const Authenticator = props => {
             <View style={authenticatorStyles.container}>
                 <SafeAreaView style={{ flex: 1 }}>
                     <View style={authenticatorStyles.secondaryContainer}>
-                        <Text>InvoiceApp</Text>
+                        <Text style={authenticatorStyles.mainTitle}>InvoiceApp</Text>
                         <View style={authenticatorStyles.formContainer}>
                             <Text style={authenticatorStyles.label}>
                                 Entrez votre adresse mail
