@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import customerCard from '../../styles/customers/customerCard';
 import { Ionicons, Feather, AntDesign, Entypo } from '@expo/vector-icons';
 import appTheme from '../../theme/fonts';
@@ -7,11 +7,19 @@ import Colors from '../../theme/colors';
 import { useNavigation } from '@react-navigation/native';
 import * as productInfoActions from '../../store/actions/productInfo';
 import { useDispatch, useSelector } from 'react-redux';
+import Checkbox from 'expo-checkbox';
+import formsStyles from '../../styles/general/formsStyles';
 
-const ProductCard = ({ data }) => {
+const ProductCard = ({
+    data,
+    isFromSelectProduct,
+    setSelectionProduct,
+    selectionProduct,
+}) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const userId = useSelector(state => state.authenticator.userId);
+    const [isSelected, setSelection] = useState(false);
 
     const onDeleteButtonHandler = productId => {
         Alert.alert(`Etes vous sur ?`, `Suppression du produit ${data.name}.`, [
@@ -35,21 +43,37 @@ const ProductCard = ({ data }) => {
         <View style={customerCard.cardContainer}>
             <View style={customerCard.cardTop}>
                 <Text style={customerCard.customerNameText}>{data.name}</Text>
-
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() =>
-                        navigation.navigate('productInfoForm', {
-                            productDataToUpdate: data,
-                        })
-                    }
-                >
-                    <Feather
-                        name="edit"
-                        size={appTheme.Size.size18}
-                        color={Colors.primaryDarker}
+                {isFromSelectProduct === false ? (
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() =>
+                            navigation.navigate('productInfoForm', {
+                                productDataToUpdate: data,
+                            })
+                        }
+                    >
+                        <Feather
+                            name="edit"
+                            size={appTheme.Size.size18}
+                            color={Colors.primaryDarker}
+                        />
+                    </TouchableOpacity>
+                ) : (
+                    <Checkbox
+                        value={isSelected}
+                        onValueChange={() => (
+                            setSelection(!isSelected),
+                            isSelected
+                                ? setSelectionProduct(
+                                      selectionProduct.filter(
+                                          product => product.id != data.id,
+                                      ),
+                                  )
+                                : setSelectionProduct([...selectionProduct, data])
+                        )}
+                        style={formsStyles.checkBox}
                     />
-                </TouchableOpacity>
+                )}
             </View>
 
             <Text style={customerCard.customerTypeText}>{data.productType}</Text>
@@ -66,16 +90,18 @@ const ProductCard = ({ data }) => {
                         ? data.priceWithTaxesTvaFree + ' €'
                         : data.priceWithoutTaxes + ' € ( HT )'}
                 </Text>
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => onDeleteButtonHandler(data.id)}
-                >
-                    <AntDesign
-                        name="closecircleo"
-                        size={appTheme.Size.size18}
-                        color={Colors.third}
-                    />
-                </TouchableOpacity>
+                {isFromSelectProduct === false ? (
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => onDeleteButtonHandler(data.id)}
+                    >
+                        <AntDesign
+                            name="closecircleo"
+                            size={appTheme.Size.size18}
+                            color={Colors.third}
+                        />
+                    </TouchableOpacity>
+                ) : null}
             </View>
         </View>
     );

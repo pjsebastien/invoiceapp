@@ -11,6 +11,14 @@ import {
     DELETE_PRODUCT,
     PUT_PRODUCT_INFO,
 } from '../actions/productInfo';
+import {
+    ADD_PAYMENT_MODE,
+    GET_PAYMENT_MODE,
+    DELETE_PAYMENT_MODE,
+    ADD_TERMS_AND_CONDITIONS,
+    GET_TERMS_AND_CONDITIONS,
+    DELETE_TERMS_AND_CONDITIONS,
+} from '../actions/invoiceDetails';
 
 const initialState = {
     userInfo: [],
@@ -18,6 +26,8 @@ const initialState = {
     customerInfo: [],
     productInfo: [],
     products: [],
+    paymentMode: [],
+    termsAndConditions: [],
 };
 
 export default (state = initialState, action) => {
@@ -54,7 +64,7 @@ export default (state = initialState, action) => {
             );
             return {
                 ...state,
-                customers: [actualCustomers],
+                customers: [...actualCustomers],
             };
         case DELETE_PRODUCT:
             let actualProducts = [...state.products];
@@ -63,7 +73,7 @@ export default (state = initialState, action) => {
             );
             return {
                 ...state,
-                products: [actualProducts],
+                products: [...actualProducts],
             };
         case GET_USER_INFO:
             const fetchedUserInfo = action.userInfos;
@@ -82,6 +92,46 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 products: fetchedProducts,
+            };
+        case ADD_PAYMENT_MODE:
+            return {
+                ...state,
+                paymentMode: action.paymentMode,
+            };
+        case GET_PAYMENT_MODE:
+            const fetchedPaymentMode = action.paymentMode;
+            return {
+                ...state,
+                paymentMode: fetchedPaymentMode,
+            };
+        case DELETE_PAYMENT_MODE:
+            let actualPaymentMode = [...state.paymentMode];
+            actualPaymentMode = actualPaymentMode.filter(
+                payment => payment.id != action.paymentModeId,
+            );
+            return {
+                ...state,
+                paymentMode: [...actualPaymentMode],
+            };
+        case ADD_TERMS_AND_CONDITIONS:
+            return {
+                ...state,
+                termsAndConditions: action.termsAndConditions,
+            };
+        case GET_TERMS_AND_CONDITIONS:
+            const fetchedTermsAndConditions = action.termsAndConditions;
+            return {
+                ...state,
+                termsAndConditions: fetchedTermsAndConditions,
+            };
+        case DELETE_TERMS_AND_CONDITIONS:
+            let actualTermsAndConditions = [...state.termsAndConditions];
+            actualTermsAndConditions = actualTermsAndConditions.filter(
+                termsAndConditions => termsAndConditions.id != action.termsAndConditions,
+            );
+            return {
+                ...state,
+                termsAndConditions: [...actualTermsAndConditions],
             };
         default:
             return state;

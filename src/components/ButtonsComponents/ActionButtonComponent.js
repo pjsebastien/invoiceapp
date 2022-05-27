@@ -5,14 +5,14 @@ import appTheme from '../../theme/fonts';
 import Colors from '../../theme/colors';
 import buttonsStyles from '../../styles/general/buttonsStyles';
 
-const ActionButtonComponent = ({ title, onPress }) => {
+const ActionButtonComponent = ({ title, onPress, sizeText }) => {
     return (
         <TouchableOpacity
             activeOpacity={0.75}
             style={buttonsStyles.actionButtonContainer}
             onPress={onPress}
         >
-            <Text style={buttonsStyles.actionText}>{title}</Text>
+            <Text style={{ ...buttonsStyles.actionText, ...sizeText }}>{title}</Text>
             <Ionicons
                 style={buttonsStyles.actionAddIcon}
                 name="md-add-circle"

@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import buttonsStyles from '../../styles/general/buttonsStyles';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import Colors from '../../theme/colors';
 import appTheme from '../../theme/fonts';
 import BackButtonComponent from './BackButtonComponent';

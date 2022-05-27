@@ -37,6 +37,16 @@ const generalStyles = StyleSheet.create({
         fontFamily: 'Orkney-bold',
         marginTop: appTheme.Size.size150,
     },
+    flexRowJustifyBetween: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    classicTextStyle: {
+        fontSize: appTheme.Size.size14,
+        color: Colors.textPrimary,
+        fontFamily: 'Orkney-regular',
+    },
 });
 
 export default generalStyles;

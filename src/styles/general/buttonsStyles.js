@@ -16,6 +16,12 @@ const buttonsStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    ButtonInvisible: {
+        width: appTheme.Size.size40,
+        height: appTheme.Size.size40,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     topContainerButtons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -29,7 +35,7 @@ const buttonsStyles = StyleSheet.create({
     },
     actionButtonContainer: {
         backgroundColor: Colors.backgroundSecondary,
-        width: appTheme.Size.size160,
+        // width: appTheme.Size.size160,
         paddingLeft: appTheme.Size.size14,
         paddingRight: appTheme.Size.size10,
         paddingVertical: appTheme.Size.size4,
@@ -42,7 +48,7 @@ const buttonsStyles = StyleSheet.create({
     actionText: {
         color: Colors.primary,
         paddingRight: appTheme.Size.size4,
-        fontSize: appTheme.Size.size16,
+        // fontSize: appTheme.Size.size14,
         textTransform: 'capitalize',
         fontFamily: 'Orkney-bold',
     },
@@ -66,6 +72,18 @@ const buttonsStyles = StyleSheet.create({
         bottom: appTheme.Size.size15,
         right: appTheme.Size.size15,
         alignSelf: 'flex-end',
+    },
+    buttonOk: {
+        backgroundColor: Colors.primaryDarker,
+        padding: appTheme.Size.size6,
+        borderRadius: 10,
+        width: appTheme.Size.size40,
+        alignItems: 'center',
+    },
+    buttonOkText: {
+        fontFamily: 'Orkney-bold',
+        fontSize: appTheme.Size.size12,
+        color: Colors.backgroundSecondary,
     },
 });
 

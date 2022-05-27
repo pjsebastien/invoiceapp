@@ -16,6 +16,9 @@ import CustomersScreen from '../screens/Customers';
 import InvoicesScreen from '../screens/Invoices';
 import EstimationsScreen from '../screens/Estimations';
 import ProductsScreen from '../screens/Products';
+import PaymentsScreen from '../screens/Payments';
+import TermsScreen from '../screens/TermsAndConditions';
+import PreviewModelInvoiceScreen from '../screens/PreviewModelInvoice';
 
 //AppStackNavigator
 const StackNavigator = createStackNavigator();
@@ -55,6 +58,11 @@ export const AppStackNavigator = () => {
                 options={{ headerShown: false }}
             />
             <StackNavigator.Screen
+                name="previewModelInvoice"
+                component={PreviewModelInvoiceScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
                 name="createEstimationForm"
                 component={CreateEstimationFormScreen}
                 options={{ headerShown: false }}
@@ -62,6 +70,21 @@ export const AppStackNavigator = () => {
             <StackNavigator.Screen
                 name="customers"
                 component={CustomersScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="products"
+                component={ProductsScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="payments"
+                component={PaymentsScreen}
+                options={{ headerShown: false }}
+            />
+            <StackNavigator.Screen
+                name="termsAndConditions"
+                component={TermsScreen}
                 options={{ headerShown: false }}
             />
         </StackNavigator.Navigator>

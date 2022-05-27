@@ -96,15 +96,130 @@ const formStyles = StyleSheet.create({
         height: appTheme.Size.size100,
         borderRadius: 12,
     },
+    selectPaymentContainer: {
+        backgroundColor: Colors.primaryDarker,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: appTheme.Size.size12,
+        marginVertical: appTheme.Size.size10,
+
+        borderRadius: 12,
+    },
+
     selectCustomerText: {
         color: Colors.backgroundSecondary,
         fontFamily: 'Orkney-bold',
         fontSize: appTheme.Size.size16,
+        width: '80%',
     },
     selectCustomerTextSmall: {
         color: Colors.backgroundSecondary,
         fontFamily: 'Orkney-regular',
         fontSize: appTheme.Size.size10,
+    },
+    calendarContainer: {
+        marginVertical: appTheme.Size.size12,
+    },
+    calendarTopContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    calendarText: {
+        paddingLeft: appTheme.Size.size12,
+        fontFamily: 'Orkney-bold',
+        fontSize: appTheme.Size.size14,
+        color: Colors.textPrimary,
+    },
+    selectProductContainer: {
+        backgroundColor: Colors.third,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: appTheme.Size.size12,
+        marginVertical: appTheme.Size.size10,
+
+        borderRadius: 12,
+    },
+    selectProductText: {
+        color: Colors.textPrimary,
+        fontFamily: 'Orkney-bold',
+        fontSize: appTheme.Size.size16,
+        width: '80%',
+    },
+    selectTermsText: {
+        color: Colors.textPrimary,
+        fontFamily: 'Orkney-regular',
+        fontSize: appTheme.Size.size12,
+        width: '80%',
+    },
+    selectedProductContainer: {
+        backgroundColor: Colors.thirdLighter,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: appTheme.Size.size12,
+        marginVertical: appTheme.Size.size4,
+        height: appTheme.Size.size50,
+        borderRadius: 12,
+    },
+    selectedProductText: {
+        color: Colors.textPrimary,
+        fontFamily: 'Orkney-regular',
+        fontSize: appTheme.Size.size14,
+    },
+    counterContainer: {
+        flexDirection: 'row',
+        backgroundColor: Colors.thirdLighter,
+        height: appTheme.Size.size28,
+        borderRadius: 10,
+    },
+    counterLeft: {
+        width: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    counterMiddle: {
+        width: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.backgroundSecondary,
+    },
+    counterRight: {
+        width: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    formLabelTextTotal: {
+        fontSize: appTheme.Size.size14,
+        color: Colors.primaryDarker,
+        fontFamily: 'Orkney-bold',
+        marginTop: 3,
+    },
+    totalAmount: {
+        fontSize: appTheme.Size.size20,
+        color: Colors.thirdDarker,
+        fontFamily: 'Orkney-bold',
+        marginTop: 3,
+    },
+    subTotalContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    attachmentPreview: {
+        marginVertical: appTheme.Size.size10,
+        alignItems: 'center',
+    },
+    attachmentImage: {
+        height: appTheme.Size.size150,
+        width: appTheme.Size.size130,
+        opacity: 0.7,
+    },
+    errorMessage: {
+        color: Colors.secondary,
+        fontSize: appTheme.Size.size10,
+        marginTop: appTheme.Size.size2,
+        fontFamily: 'Orkney-regular',
     },
 });
 

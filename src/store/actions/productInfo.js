@@ -30,6 +30,7 @@ export const addProductInfo = (userId, productInfo, token) => {
                 priceTtc: productInfo.priceTtc,
                 unit: productInfo.unit,
                 information: productInfo.information,
+                quantity: productInfo.quantity,
             };
 
             dispatch({ type: ADD_PRODUCT_INFO, productInfo: newProductInfo });
@@ -53,6 +54,7 @@ export const putProductInfo = (userId, productInfo, productId, token) => {
                 priceTtc: productInfo.priceTtc,
                 unit: productInfo.unit,
                 information: productInfo.information,
+                quantity: productInfo.quantity,
             };
             const idProduct = {
                 id: productId + 1,

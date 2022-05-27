@@ -25,6 +25,7 @@ const ProductInfoForm = ({ route }) => {
     const [isSelected, setSelection] = useState(true);
     const [isTaxesFree, setIsTaxesFree] = useState(false);
     const [dataToUpdate, setDataToUpdate] = useState(null);
+    const [isFromSelectProduct, setIsFromSelectProduct] = useState(false);
 
     const [priceTtc, setPriceTtc] = useState(null);
 
@@ -36,6 +37,8 @@ const ProductInfoForm = ({ route }) => {
 
     useEffect(() => {
         preventBackButtonHandling();
+        route?.params?.isFromSelectProduct &&
+            setIsFromSelectProduct(route.params.isFromSelectProduct);
     }, []);
 
     useFocusEffect(
@@ -45,6 +48,7 @@ const ProductInfoForm = ({ route }) => {
                     'hardwareBackPress',
                     onPressArrowBackBottom,
                 );
+                setIsFromSelectProduct(false);
             };
         }, []),
     );
@@ -62,7 +66,10 @@ const ProductInfoForm = ({ route }) => {
             },
             {
                 text: 'OK',
-                onPress: () => navigation.goBack(),
+                onPress: () =>
+                    isFromSelectProduct
+                        ? navigation.navigate('products', { fromSelectProduct: true })
+                        : navigation.goBack(),
                 style: 'default',
             },
         ]);
@@ -78,7 +85,10 @@ const ProductInfoForm = ({ route }) => {
             },
             {
                 text: 'OK',
-                onPress: () => navigation.goBack(),
+                onPress: () =>
+                    isFromSelectProduct
+                        ? navigation.navigate('products', { fromSelectProduct: true })
+                        : navigation.goBack(),
                 style: 'default',
             },
         ]);
@@ -135,12 +145,13 @@ const ProductInfoForm = ({ route }) => {
             isTaxesFree: isTaxesFree,
             priceWithTaxesTvaFree: data.priceWithTaxesTvaFree
                 ? data.priceWithTaxesTvaFree
-                : '',
-            priceWithoutTaxes: data.priceWithoutTaxes ? data.priceWithoutTaxes : '',
-            tva: data.tva ? data.tva : '',
+                : '0',
+            priceWithoutTaxes: data.priceWithoutTaxes ? data.priceWithoutTaxes : '0',
+            tva: data.tva ? data.tva : '0',
             priceTtc: priceTtc ? priceTtc : '',
             unit: data.unit ? data.unit : '',
             information: data.information ? data.information : '',
+            quantity: '0',
         };
 
         if (dataToUpdate) {
@@ -154,7 +165,10 @@ const ProductInfoForm = ({ route }) => {
         }
         dispatch(productInfoActions.getProducts(userId));
 
-        navigation.navigate('drawerProducts');
+        isFromSelectProduct
+            ? // ? navigation.navigate('createInvoiceForm', { selectedProduct: [productInfo] })
+              navigation.navigate('products', { fromSelectProduct: true })
+            : navigation.navigate('drawerProducts');
     };
 
     const {
@@ -267,7 +281,7 @@ const ProductInfoForm = ({ route }) => {
                             {isTaxesFree ? (
                                 <View>
                                     <Text style={formsStyles.formLabelText}>
-                                        Prix TTC :
+                                        Prix HT éxonéré de TVA :
                                     </Text>
                                     <Controller
                                         control={control}

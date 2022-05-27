@@ -7,29 +7,18 @@ import DeleteButtonComponent from '../ButtonsComponents/DeleteButtonComponent';
 import appTheme from '../../theme/fonts';
 import Colors from '../../theme/colors';
 
-const ClientPickerComponent = ({ data, onDeletePress }) => {
+const PaymentModeComponent = ({ data, onDeletePress, setPaymentData }) => {
     const navigation = useNavigation();
     return (
         <View>
-            <Text style={formsStyles.formLabelText}>Choisir un client :</Text>
+            <Text style={formsStyles.formLabelText}>Mode de paiement :</Text>
             {data !== undefined ? (
                 <TouchableOpacity
-                    onPress={() =>
-                        navigation.push('customers', { fromSelectCustomer: true })
-                    }
+                    onPress={() => navigation.push('payments')}
                     activeOpacity={0.8}
-                    style={formsStyles.selectCustomerContainer}
+                    style={formsStyles.selectPaymentContainer}
                 >
-                    <View>
-                        <Text style={formsStyles.selectCustomerText}>
-                            {data.customerType === 'Entreprise'
-                                ? data.companyName
-                                : data.familyName + ' ' + data.userName}
-                        </Text>
-                        <Text style={formsStyles.selectCustomerTextSmall}>
-                            {data.customerType}
-                        </Text>
-                    </View>
+                    <Text style={formsStyles.selectCustomerText}>{data}</Text>
 
                     <DeleteButtonComponent
                         onPress={onDeletePress}
@@ -40,13 +29,13 @@ const ClientPickerComponent = ({ data, onDeletePress }) => {
             ) : (
                 <TouchableOpacity
                     onPress={() =>
-                        navigation.push('customers', { fromSelectCustomer: true })
+                        navigation.push('payments', { fromSelectCustomer: true })
                     }
                     activeOpacity={0.8}
-                    style={formsStyles.selectCustomerContainer}
+                    style={formsStyles.selectPaymentContainer}
                 >
                     <Text style={formsStyles.selectCustomerText}>
-                        Selectionner un client
+                        Ajouter un mode de paiement
                     </Text>
                     <SearchButtonComponent />
                 </TouchableOpacity>
@@ -55,4 +44,4 @@ const ClientPickerComponent = ({ data, onDeletePress }) => {
     );
 };
 
-export default ClientPickerComponent;
+export default PaymentModeComponent;

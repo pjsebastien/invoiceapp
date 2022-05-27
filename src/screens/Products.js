@@ -1,20 +1,29 @@
-import { View, TextInput, SafeAreaView, Text, FlatList } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {
+    View,
+    TextInput,
+    SafeAreaView,
+    Text,
+    FlatList,
+    TouchableOpacity,
+} from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import generalStyles from '../styles/general/generalStyles';
 import DrawerMenuButtonComponent from '../components/ButtonsComponents/DrawerMenuButtonComponent';
 import buttonsStyles from '../styles/general/buttonsStyles';
 import SearchButtonComponent from '../components/ButtonsComponents/SearchButtonComponent';
 import AddButtonComponent from '../components/ButtonsComponents/AddButtonComponent';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import ProductCard from '../components/ProductsComponents/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import * as productInfoActions from '../store/actions/productInfo';
 import RefreshButtonComponent from '../components/ButtonsComponents/RefreshButtonComponent';
 
-const Products = () => {
+const Products = ({ route }) => {
     const [searchActive, setSearchActive] = useState(false);
     const [query, setQuery] = useState('');
     const [searchedData, setSearchedData] = useState([]);
+    const [isFromSelectProduct, setSelectedProduct] = useState(false);
+    const [selectionProduct, setSelectionProduct] = useState([]);
 
     const dispatch = useDispatch();
     const userId = useSelector(state => state.authenticator.userId);
@@ -24,6 +33,18 @@ const Products = () => {
     useEffect(() => {
         dispatch(productInfoActions.getProducts(userId));
     }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            route?.params?.fromSelectProduct
+                ? (setSelectedProduct(true), console.log(route.params))
+                : console.log('no params');
+
+            return () => {
+                setSelectedProduct(false);
+            };
+        }, []),
+    );
 
     const handleSearchButton = () => {
         setSearchActive(!searchActive);
@@ -69,7 +90,33 @@ const Products = () => {
                         </>
                     )}
                 </View>
-                <View style={generalStyles.container}>
+                {isFromSelectProduct ? (
+                    <View
+                        style={{ ...generalStyles.flexRowJustifyBetween, marginTop: 30 }}
+                    >
+                        <Text style={generalStyles.classicTextStyle}>
+                            {selectionProduct.length}
+                            {selectionProduct.length > 1
+                                ? ' produits sélectionnés'
+                                : ' produit sélectionné'}{' '}
+                        </Text>
+                        <TouchableOpacity
+                            activeOpacity={0.8}
+                            style={buttonsStyles.buttonOk}
+                            onPress={() =>
+                                selectionProduct.length > 0
+                                    ? navigation.navigate('createInvoiceForm', {
+                                          selectedProduct: selectionProduct,
+                                      })
+                                    : navigation.navigate('createInvoiceForm')
+                            }
+                        >
+                            <Text style={buttonsStyles.buttonOkText}>OK</Text>
+                        </TouchableOpacity>
+                    </View>
+                ) : null}
+
+                <View style={{ marginTop: 20, flex: 1 }}>
                     {fetchedProducts.length >= 1 ? (
                         <FlatList
                             showsVerticalScrollIndicator={false}
@@ -81,7 +128,15 @@ const Products = () => {
                                       )
                             }
                             renderItem={({ item }) => {
-                                return <ProductCard data={item} key={item.id} />;
+                                return (
+                                    <ProductCard
+                                        data={item}
+                                        key={item.id}
+                                        isFromSelectProduct={isFromSelectProduct}
+                                        setSelectionProduct={setSelectionProduct}
+                                        selectionProduct={selectionProduct}
+                                    />
+                                );
                             }}
                         />
                     ) : (
@@ -91,7 +146,13 @@ const Products = () => {
                     )}
                 </View>
             </SafeAreaView>
-            <AddButtonComponent onPress={() => navigation.navigate('productInfoForm')} />
+            <AddButtonComponent
+                onPress={() =>
+                    navigation.navigate('productInfoForm', {
+                        isFromSelectProduct: isFromSelectProduct,
+                    })
+                }
+            />
         </View>
     );
 };

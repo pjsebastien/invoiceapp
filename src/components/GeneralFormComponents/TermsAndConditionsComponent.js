@@ -7,46 +7,41 @@ import DeleteButtonComponent from '../ButtonsComponents/DeleteButtonComponent';
 import appTheme from '../../theme/fonts';
 import Colors from '../../theme/colors';
 
-const ClientPickerComponent = ({ data, onDeletePress }) => {
+const TermsAndConditionsComponent = ({ data, onDeletePress }) => {
     const navigation = useNavigation();
     return (
         <View>
-            <Text style={formsStyles.formLabelText}>Choisir un client :</Text>
+            <Text style={formsStyles.formLabelText}>Conditions générales :</Text>
             {data !== undefined ? (
                 <TouchableOpacity
                     onPress={() =>
-                        navigation.push('customers', { fromSelectCustomer: true })
+                        navigation.push('termsAndConditions', {
+                            fromSelectCustomer: true,
+                        })
                     }
                     activeOpacity={0.8}
-                    style={formsStyles.selectCustomerContainer}
+                    style={formsStyles.selectProductContainer}
                 >
-                    <View>
-                        <Text style={formsStyles.selectCustomerText}>
-                            {data.customerType === 'Entreprise'
-                                ? data.companyName
-                                : data.familyName + ' ' + data.userName}
-                        </Text>
-                        <Text style={formsStyles.selectCustomerTextSmall}>
-                            {data.customerType}
-                        </Text>
-                    </View>
+                    <Text style={formsStyles.selectTermsText}>{data}</Text>
 
                     <DeleteButtonComponent
                         onPress={onDeletePress}
                         size={appTheme.Size.size32}
-                        color={Colors.third}
+                        color={Colors.primary}
                     />
                 </TouchableOpacity>
             ) : (
                 <TouchableOpacity
                     onPress={() =>
-                        navigation.push('customers', { fromSelectCustomer: true })
+                        navigation.push('termsAndConditions', {
+                            fromSelectCustomer: true,
+                        })
                     }
                     activeOpacity={0.8}
-                    style={formsStyles.selectCustomerContainer}
+                    style={formsStyles.selectProductContainer}
                 >
-                    <Text style={formsStyles.selectCustomerText}>
-                        Selectionner un client
+                    <Text style={formsStyles.selectProductText}>
+                        Selectionner les conditions générales
                     </Text>
                     <SearchButtonComponent />
                 </TouchableOpacity>
@@ -55,4 +50,4 @@ const ClientPickerComponent = ({ data, onDeletePress }) => {
     );
 };
 
-export default ClientPickerComponent;
+export default TermsAndConditionsComponent;
